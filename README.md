@@ -38,6 +38,8 @@ The Kafka topic where all the mqtt pubs are ingested can be changed:
 
 0. There is a running Kafka development cluster with anonymous access (example [here](./compose/docker-compose.yml)) 
 1. We assume that the configured Kafka topic exist with a number of partitions that matches num_partitions
+    * Important: you need to ensure that the kafka topic (and partitions) are prepared in kafka before you start the vernemq cluster
+    * In case you need to alter partitions and topic in Kafka you need to restart VerneMQ
 2. Minumum for num_partitions is 1
 3. If num_partitions is more than 1 the producers will send the message to a randomized partition in the interval [0, num_partitions-1]
 4. The Kafka key value is now empty
