@@ -1,0 +1,34 @@
+{mapping, "vmq_kafka.registry_mfa", "vmq_kafka.registry_mfa", [
+	{default, "{vmq_reg,direct_plugin_exports,[vmq_kafka]}"},
+	{datatype, string},
+	hidden
+ ]}.
+
+{translation, "vmq_kafka.registry_mfa",
+ fun(Conf) ->
+	 S = cuttlefish:conf_get("vmq_kafka.registry_mfa", Conf),
+	 {ok, T, _} = erl_scan:string(S ++ "."),
+	 {ok, Term} = erl_parse:parse_term(T),
+	 Term
+ end}.
+
+%% @doc Set the name of the brod client as specified in "advance.config".
+%% Defaults to "brod_client".
+{mapping, "vmq_kafka.brod_client", "vmq_kafka.brod_client", [
+	{default, "brod_client"},
+	{datatype, string}
+]}.
+
+%% @doc Set the number of Kafka partitions for the topic.
+%% Defaults to 1.
+{mapping, "vmq_kafka.num_partitions", "vmq_kafka.num_partitions", [
+	{default, 1},
+	{datatype, integer}
+]}.
+
+%% @doc Set the Kafka topic where all mqtt messages will be published.
+%% Defaults to "vmq-mqtt-all".
+{mapping, "vmq_kafka.kafka_topic", "vmq_kafka.kafka_topic", [
+	{default, "vmq-mqtt-all"},
+	{datatype, string}
+]}.

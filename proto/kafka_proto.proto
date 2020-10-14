@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+message mqtt {
+  required string mountpoint = 1;
+  required string client_id = 2;
+  required string topic = 3;
+  required bytes payload = 4;
+}

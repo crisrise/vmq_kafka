@@ -1,0 +1,28 @@
+{application, vmq_kafka,[
+    {description, "A VerneMQ plugin that send all published messages to Apache Kafka"},
+    {vsn, "0.0.1"},
+    {registered, []},
+    {mod, { vmq_kafka_app, []}},
+    {applications,[
+        kernel,
+        stdlib,
+        brod
+    ]},
+    {env,[
+        {registry_mfa, {vmq_reg, direct_plugin_exports, [vmq_kafka]}},
+        %% Tell vmq_kafka useful kafka producer var 
+        {brod_client, "brod_client"}, %% Needs to match the client as specified in advanced.config for brod
+        {num_partitions, 1}, %% Needs to be considered when creating the topic in Kafka
+        {kafka_topic, "vmq-mqtt-all"}, %% Name of the topic
+        %% Tell VerneMQ to look in the file 'vmq_kafka'
+        %% for the plugin hook functions.
+        %% The format is: {ModuleName, HookName, Arity, Opts}
+        {vmq_plugin_hooks,[
+            {vmq_kafka, on_publish, 6, []}
+        ]}
+    ]},
+    {modules, []},
+    {maintainers, ["Cristian Andreola"]},
+    {licenses, ["Apache 2.0"]},
+    {links, []}
+ ]}.
