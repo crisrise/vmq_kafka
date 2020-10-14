@@ -67,3 +67,9 @@ At the moment this plugin is in development stage and not ready for a production
 Please refer to VerneMQ [manual](https://docs.vernemq.com/plugindevelopment/introduction) on how to package the plugin for a production environment.
 
 ## 
+
+---
+
+## Thanks
+
+To [redclawtech](https://github.com/redclawtech) for creating this [project](https://github.com/redclawtech/rebar3_template_vernemq) that helps creating a proper generic vernemq plugin code.
